@@ -77,11 +77,11 @@ const MovieDetails = () => {
                 <div className="flex space-x-2 w-full">
                   <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
                     <p className="text-white">Stream</p>
-                    <CiStreamOn style={{ color: "#FE9D00" }} />
+                    <CiStreamOn style={{ color: "#068c7c" }} />
                   </button>
                   <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
                     <p className="text-white">Download</p>
-                    <FaDownload style={{ color: "#FE9D00" }} />
+                    <FaDownload style={{ color: "#068c7c" }} />
                   </button>
                 </div>
               </div>

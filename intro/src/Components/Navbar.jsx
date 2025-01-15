@@ -15,7 +15,7 @@ const Navbar = () => {
       <nav className="w-full text-white py-3 bg-primary sticky top-0 z-30">
         <div className="flex justify-between items-center px-4 container mx-auto">
           <Link to="/" className="text-xl font-semibold">
-            AR<span className="text-secondary">Media</span>
+            Mov<span className="text-secondary">Atti</span>
           </Link>
 
           <div className="space-x-10 text-white hidden lg:flex lg:items-center">
@@ -28,9 +28,6 @@ const Navbar = () => {
             <NavLink to="/topratedpage" activeclassname="active">
               Top Rated
             </NavLink>
-            {/* <NavLink to="/favorite" activeclassname="active">
-              Upcoming
-            </NavLink> */}
             <NavLink to="/contact" activeclassname="active">
               Contact Us
             </NavLink>

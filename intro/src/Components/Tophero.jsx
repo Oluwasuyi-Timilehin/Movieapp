@@ -12,13 +12,13 @@ const Tophero = () => {
                 <span className="text-secondary">Top</span> Rated Movies
               </p>
               <p className="text-grey text-center leading-[35px] font-semibold lg:text-left">
-                Top 20 movies as determined by ArMedia users
+                Top 20 movies as determined by MovAtti users
               </p>
             </div>
             <p className="text-lg text-center opacity-75 lg:text-xl lg:text-left">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-              consequatur quisquam, rerum consectetur ratione vel unde illum ea
-              eius quasi!
+              Discover cinematic brilliance with our top-rated movies,
+              showcasing the finest storytelling, performances, and visuals that
+              have captivated audiences and critics alike.
             </p>
           </div>
 
