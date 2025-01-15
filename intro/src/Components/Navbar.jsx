@@ -22,8 +22,8 @@ const Navbar = () => {
             <NavLink to="/" activeclassname="active">
               Discover
             </NavLink>
-            <NavLink to="/blog" activeclassname="active">
-              Blog
+            <NavLink to="/popular" activeclassname="active">
+              Popular
             </NavLink>
             <NavLink to="/topratedpage" activeclassname="active">
               Top Rated
@@ -60,8 +60,8 @@ const Navbar = () => {
           <NavLink to="/" activeclassname="active" className="text-lg">
             Discover
           </NavLink>
-          <NavLink to="/blog" activeclassname="active" className="text-lg">
-            Blog
+          <NavLink to="/popular" activeclassname="active" className="text-lg">
+            Popular
           </NavLink>
           <NavLink
             to="/topratedpage"

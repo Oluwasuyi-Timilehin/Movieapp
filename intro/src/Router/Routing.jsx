@@ -7,6 +7,7 @@ import Blog from "../Pages/Blog";
 import Signup from "../Components/Signup";
 import Login from "../Components/Login";
 import Contact from "../Components/Contact";
+import Popularpage from "../Pages/Popularpage";
 
 const Routing = () => {
   return (
@@ -20,6 +21,7 @@ const Routing = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/topratedpage" element={<Topratedpage />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/popular" element={<Popularpage />} />
         </Routes>
       </BrowserRouter>
     </>
