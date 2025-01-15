@@ -28,14 +28,8 @@ const Navbar = () => {
             <NavLink to="/topratedpage" activeclassname="active">
               Top Rated
             </NavLink>
-            <NavLink to="/contact" activeclassname="active">
-              Contact Us
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className="border border-secondary font-semibold px-4 text-sm text-white py-2 rounded-md shadow-lg hover:bg-secondary hover:text-white transition-all duration-300"
-            >
-              Sign Up
+            <NavLink to="/upcoming" activeclassname="active">
+              Upcoming
             </NavLink>
           </div>
 
@@ -70,14 +64,8 @@ const Navbar = () => {
           >
             Top Rated
           </NavLink>
-          <NavLink to="/contact" activeclassname="active">
-            Contact Us
-          </NavLink>
-          <NavLink
-            to="/signup"
-            className="border border-secondary font-semibold px-4 text-sm text-white py-2 rounded-md shadow-lg hover:bg-secondary hover:text-white transition-all duration-300"
-          >
-            Sign Up
+          <NavLink to="/upcoming" activeclassname="active">
+            Upcoming
           </NavLink>
         </div>
       </div>
