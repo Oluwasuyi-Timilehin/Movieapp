@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.active{
+    color: #c6c6c6;
+}
