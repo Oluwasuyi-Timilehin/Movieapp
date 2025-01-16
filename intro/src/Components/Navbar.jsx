@@ -33,7 +33,6 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          {/* Mobile Navbar Starts */}
           <button onClick={toggleMenu} className="lg:hidden text-secondary">
             {open ? (
               <IoIosClose fontSize="25" />
@@ -41,8 +40,6 @@ const Navbar = () => {
               <AiOutlineMenu fontSize="25" />
             )}
           </button>
-
-          {/* Mobile Navbar Ends */}
         </div>
       </nav>
       <div

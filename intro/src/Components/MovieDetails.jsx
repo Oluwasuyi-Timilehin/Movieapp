@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link, NavLink } from "react-router-dom";
 import { FaDownload } from "react-icons/fa6";
 import { CiStreamOn } from "react-icons/ci";
-import { AiOutlineMenu } from "react-icons/ai";
-import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 
 const MovieDetails = () => {
   const { id } = useParams();
-  const [movies, setMovies] = useState({});
+  const [movie, setMovie] = useState({});
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [display, setDisplay] = useState("hidden");
-  const [isopen, setIsOpen] = useState(false);
+
   const convertRuntime = (runtime) => {
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
@@ -29,120 +26,94 @@ const MovieDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    const fetchMovieDetails = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+          options
+        );
+        const data = await response.json();
+        setMovie(data);
 
-        setMovies(data);
+        const videoResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+          options
+        );
+        const videoData = await videoResponse.json();
+        setVideos(
+          videoData.results.filter((video) => video.site === "YouTube")
+        );
         setLoading(false);
-      })
-      .catch((err) => console.error(err));
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchMovieDetails();
   }, [id]);
+
   return (
     <div>
       <Navbar />
-      {loading && (
-        <>
-          <div className="flex flex-col animate-spin h-screen justify-center items-center space-y-2">
-            <figure className="flex space-x-2">
-              <div className="w-4 h-4 bg-green-800 animate-pulse rounded-full"></div>
-              <div className="w-4 h-4 bg-green-800 rounded-full"></div>
-            </figure>
-            <figure className="flex space-x-2">
-              <div className="w-4 h-4 bg-green-800 animate-pulse rounded-full"></div>
-              <div className="w-4 h-4 bg-green-800 rounded-full"></div>
-            </figure>
-          </div>
-        </>
-      )}
-
-      {movies && movies.poster_path && (
+      {loading ? (
+        <div className="flex flex-col animate-spin h-screen justify-center items-center space-y-2">
+          <figure className="flex space-x-2">
+            <div className="w-4 h-4 bg-green-800 animate-pulse rounded-full"></div>
+            <div className="w-4 h-4 bg-green-800 rounded-full"></div>
+          </figure>
+        </div>
+      ) : (
         <section className="container mx-auto">
           <figure className="flex flex-col h-screen w-full space-y-5 py-7 px-4 md:px-7 lg:px-10">
-            <div className="w-full" key={movies.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movies.backdrop_path}`}
-                alt={`${movies.title}`}
-                className="rounded-xl w-full object-cover"
-              />
+            <div className="w-full">
+              {videos.length > 0 ? (
+                <iframe
+                  className="w-full h-80 md:h-[600px] rounded-xl"
+                  src={`https://www.youtube.com/embed/${videos[0].key}`}
+                  title={videos[0].name}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                  alt={`${movie.title}`}
+                  className="rounded-xl w-full object-cover"
+                />
+              )}
             </div>
             <div className="flex flex-col">
-              <div className="flex justify-center items-center space-x-5">
-                <h1 className="text-black font-bold text-xl text-center py-2 md:text-2xl">
-                  {movies.title}
-                </h1>
-              </div>
+              <h1 className="text-black font-bold text-xl text-center py-2 md:text-2xl">
+                {movie.title}
+              </h1>
               <div className="flex space-x-10 items-center">
-                <div className="flex space-x-2 w-full">
-                  <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
-                    <p className="text-white">Stream</p>
-                    <CiStreamOn style={{ color: "#068c7c" }} />
-                  </button>
-                  <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
-                    <p className="text-white">Download</p>
-                    <FaDownload style={{ color: "#068c7c" }} />
-                  </button>
-                </div>
+                <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
+                  <p className="text-white">Stream</p>
+                  <CiStreamOn style={{ color: "#068c7c" }} />
+                </button>
+                <button className="bg-primary flex justify-center space-x-2 items-center w-full px-2 py-3 rounded-lg text-white">
+                  <p className="text-white">Download</p>
+                  <FaDownload style={{ color: "#068c7c" }} />
+                </button>
               </div>
             </div>
             <div className="space-y-1">
               <p className="text-black text-lg font-bold md:text-xl">
                 Movie Info
               </p>
-              <p className="text-black text-sm md:text-md">{movies.overview}</p>
+              <p className="text-black text-sm md:text-md">{movie.overview}</p>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Status:
-                </p>
-                <p className="text-xs md:text-md">{movies.status}</p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Release Date:
-                </p>
-                <p className="text-xs md:text-md">{movies.release_date}</p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Runtime:
-                </p>
-                <p className="text-xs md:text-md">
-                  {movies.runtime && convertRuntime(movies.runtime)}
-                </p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Ratings:
-                </p>
-                <p className="text-xs md:text-md">{movies.vote_average}</p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Genres:
-                </p>
-                <p className="text-xs md:text-md">
-                  {movies.genres.map((genre) => (
-                    <span key={genre.id}>
-                      {genre.name} {genre !== genre.length - 1 ? " | " : ""}{" "}
-                    </span>
-                  ))}
-                </p>
-              </div>
-              <div className="flex items-center space-x-2">
-                <p className="text-black text-sm font-semibold md:text-lg">
-                  Production Co:
-                </p>
-                <p className="text-xs md:text-md">
-                  {movies.production_companies.map((genre) => (
-                    <span key={genre.id}>
-                      {genre.name} {genre !== genre.length - 1 ? " | " : ""}{" "}
-                    </span>
-                  ))}
-                </p>
-              </div>
+              <p className="text-black text-sm font-semibold md:text-lg">
+                Release Date: {movie.release_date}
+              </p>
+              <p className="text-black text-sm font-semibold md:text-lg">
+                Runtime: {convertRuntime(movie.runtime)}
+              </p>
+              <p className="text-black text-sm font-semibold md:text-lg">
+                Ratings: {movie.vote_average}
+              </p>
             </div>
           </figure>
         </section>
