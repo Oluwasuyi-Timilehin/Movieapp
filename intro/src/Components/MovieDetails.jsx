@@ -61,6 +61,10 @@ const MovieDetails = () => {
             <div className="w-4 h-4 bg-green-800 animate-pulse rounded-full"></div>
             <div className="w-4 h-4 bg-green-800 rounded-full"></div>
           </figure>
+          <figure className="flex space-x-2">
+            <div className="w-4 h-4 bg-green-800 animate-pulse rounded-full"></div>
+            <div className="w-4 h-4 bg-green-800 rounded-full"></div>
+          </figure>
         </div>
       ) : (
         <section className="container mx-auto">
