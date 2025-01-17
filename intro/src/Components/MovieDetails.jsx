@@ -78,7 +78,7 @@ const MovieDetails = () => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
-                ></iframe>
+                  ></iframe>
               ) : (
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
@@ -102,22 +102,36 @@ const MovieDetails = () => {
                 </button>
               </div>
             </div>
-            <div className="space-y-1">
-              <p className="text-black text-lg font-bold md:text-xl">
-                Movie Info
-              </p>
-              <p className="text-black text-sm md:text-md">{movie.overview}</p>
-            </div>
-            <div className="space-y-2">
-              <p className="text-black text-sm font-semibold md:text-lg">
-                Release Date: {movie.release_date}
-              </p>
-              <p className="text-black text-sm font-semibold md:text-lg">
-                Runtime: {convertRuntime(movie.runtime)}
-              </p>
-              <p className="text-black text-sm font-semibold md:text-lg">
-                Ratings: {movie.vote_average}
-              </p>
+            <div className="flex lg:space-x-10 pb-10">
+              
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+                  alt=""
+                  className="rounded-md object-cover hidden lg:"
+                />
+              
+
+              <div className="space-y-3">
+                <div className="space-y-1">
+                  <p className="text-black text-lg font-bold md:text-xl">
+                    Movie Info
+                  </p>
+                  <p className="text-black text-sm md:text-md">
+                    {movie.overview}
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-black text-sm font-semibold md:text-lg">
+                    Release Date: {movie.release_date}
+                  </p>
+                  <p className="text-black text-sm font-semibold md:text-lg">
+                    Runtime: {convertRuntime(movie.runtime)}
+                  </p>
+                  <p className="text-black text-sm font-semibold md:text-lg">
+                    Ratings: {movie.vote_average}
+                  </p>
+                </div>
+              </div>
             </div>
           </figure>
         </section>
