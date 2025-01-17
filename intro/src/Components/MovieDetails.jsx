@@ -107,7 +107,7 @@ const MovieDetails = () => {
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
                   alt=""
-                  className="rounded-md object-cover hidden lg:"
+                  className="rounded-md object-cover hidden lg:flex"
                 />
               
 
