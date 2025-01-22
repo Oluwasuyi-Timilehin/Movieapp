@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const MovieDetails = () => {
-  const { id } = useParams();
-  const [movie, setMovie] = useState({});
-  const [cast, setCast] = useState([]);
-  const [loading, setLoading] = useState(true);
-
+ const { id } = useParams();
+ const [movie, setMovie] = useState({});
+ const [cast, setCast] = useState([]);
+ const [trailerKey, setTrailerKey] = useState("");
+ const [showTrailer, setShowTrailer] = useState(false);
+ const [loading, setLoading] = useState(true);
   const API_KEY =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Nzg3YTczZjYzNTU3ODk4ZTNhOTY4YTVlZGZiNzRlNyIsIm5iZiI6MTY5ODkyOTc1NC4yNjcsInN1YiI6IjY1NDM5YzVhZTFhZDc5MDE0YmQyMWE1YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vhHC9JBrADpk9_5J3LzqRchpXgXopQCgDxqoQ2CqQ1w"; // Replace this with your API key
 
@@ -19,38 +20,48 @@ const MovieDetails = () => {
     },
   };
 
-  useEffect(() => {
-    const fetchMovieDetails = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
-          options
-        );
-        const movieData = await response.json();
-        setMovie(movieData);
+   useEffect(() => {
+     const fetchMovieDetails = async () => {
+       try {
+         const response = await fetch(
+           `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+           options
+         );
+         const movieData = await response.json();
+         setMovie(movieData);
 
-        const castResponse = await fetch(
-          `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
-          options
-        );
-        const castData = await castResponse.json();
-        setCast(castData.cast.slice(0, 6)); // Display top 6 cast members
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching movie data:", error);
-      }
-    };
+         const castResponse = await fetch(
+           `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+           options
+         );
+         const castData = await castResponse.json();
+         setCast(castData.cast.slice(0, 6)); // Display top 6 cast members
 
-    fetchMovieDetails();
-  }, [id]);
+         const trailerResponse = await fetch(
+           `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+           options
+         );
+         const trailerData = await trailerResponse.json();
+         const trailer = trailerData.results.find(
+           (video) => video.type === "Trailer" && video.site === "YouTube"
+         );
+         setTrailerKey(trailer ? trailer.key : "");
+         setLoading(false);
+       } catch (error) {
+         console.error("Error fetching movie data:", error);
+       }
+     };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="loader">Loading...</div>
-      </div>
-    );
-  }
+     fetchMovieDetails();
+   }, [id]);
+
+   if (loading) {
+     return (
+       <div className="flex justify-center items-center h-screen">
+         <div className="loader">Loading...</div>
+       </div>
+     );
+   }
 
   return (
     <div>
@@ -147,7 +158,10 @@ const MovieDetails = () => {
                   </div>
                 </div>
 
-                <button className="text-white text-xl flex items-center hover:text-gray-400">
+                <button
+                  className="text-white text-xl flex items-center hover:text-gray-400"
+                  onClick={() => setShowTrailer(true)}
+                >
                   ▶ <span className="ml-1 text-sm">Play Trailer</span>
                 </button>
               </div>
@@ -163,6 +177,29 @@ const MovieDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Trailer Modal */}
+      {showTrailer && trailerKey && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+          <div className="relative w-full max-w-4xl">
+            <iframe
+              width="100%"
+              height="500px"
+              src={`https://www.youtube.com/embed/${trailerKey}`}
+              title="Movie Trailer"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+            <button
+              className="absolute top-2 right-2 text-white text-2xl"
+              onClick={() => setShowTrailer(false)}
+            >
+              ✖
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Cast Section */}
       <div className="container mx-auto p-6">
@@ -180,7 +217,7 @@ const MovieDetails = () => {
                 alt={actor.name}
                 className="object-contain"
               />
-              <div className="px-3">
+              <div className="px-3 py-2">
                 <p className="text-gray-700 mt-2 font-semibold">{actor.name}</p>
                 <p className="text-gray-500 text-sm">{actor.character}</p>
               </div>
