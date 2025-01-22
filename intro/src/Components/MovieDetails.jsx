@@ -99,7 +99,7 @@ const MovieDetails = () => {
                   ? `(${new Date(movie.release_date).getFullYear()})`
                   : ""}
               </h1>
-              <p className="flex flex-col lg:flex-row">
+              <p className="flex flex-col space-y-1 lg:flex-row">
                 <span className="text-center text-sm border border-gray-400 h-7 w-7 flex justify-center items-center rounded-sm font-semibold text-gray-500 mr-2">
                   {movie.certification || "PG"}
                 </span>
