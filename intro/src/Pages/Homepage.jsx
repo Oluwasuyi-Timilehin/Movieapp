@@ -19,7 +19,7 @@ const Homepage = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+      `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=`,
       options
     )
       .then((response) => response.json())
