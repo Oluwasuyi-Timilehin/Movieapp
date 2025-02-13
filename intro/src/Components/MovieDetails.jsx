@@ -93,7 +93,7 @@ const MovieDetails = () => {
           {/* Right Section - Details */}
           <div className="md:w-2/3 p-6 flex flex-col space-y-10">
             <div className="flex flex-col">
-              <h1 className="text-4xl font-bold">
+              <h1 className="text-4xl space-y-2 font-bold">
                 {movie.title}{" "}
                 {movie.release_date
                   ? `(${new Date(movie.release_date).getFullYear()})`
