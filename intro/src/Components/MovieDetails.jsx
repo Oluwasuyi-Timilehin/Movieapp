@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import Navbar from "./Navbar";
 
 const MovieDetails = () => {
- const { id } = useParams();
- const [movie, setMovie] = useState({});
- const [cast, setCast] = useState([]);
- const [trailerKey, setTrailerKey] = useState("");
- const [showTrailer, setShowTrailer] = useState(false);
- const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const [movie, setMovie] = useState({});
+  const [cast, setCast] = useState([]);
+  const [trailerKey, setTrailerKey] = useState("");
+  const [showTrailer, setShowTrailer] = useState(false);
+  const [loading, setLoading] = useState(true);
   const API_KEY =
     "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4Nzg3YTczZjYzNTU3ODk4ZTNhOTY4YTVlZGZiNzRlNyIsIm5iZiI6MTY5ODkyOTc1NC4yNjcsInN1YiI6IjY1NDM5YzVhZTFhZDc5MDE0YmQyMWE1YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vhHC9JBrADpk9_5J3LzqRchpXgXopQCgDxqoQ2CqQ1w"; // Replace this with your API key
 
@@ -20,48 +20,48 @@ const MovieDetails = () => {
     },
   };
 
-   useEffect(() => {
-     const fetchMovieDetails = async () => {
-       try {
-         const response = await fetch(
-           `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
-           options
-         );
-         const movieData = await response.json();
-         setMovie(movieData);
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
+          options
+        );
+        const movieData = await response.json();
+        setMovie(movieData);
 
-         const castResponse = await fetch(
-           `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
-           options
-         );
-         const castData = await castResponse.json();
-         setCast(castData.cast.slice(0, 6)); // Display top 6 cast members
+        const castResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`,
+          options
+        );
+        const castData = await castResponse.json();
+        setCast(castData.cast.slice(0, 6)); // Display top 6 cast members
 
-         const trailerResponse = await fetch(
-           `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-           options
-         );
-         const trailerData = await trailerResponse.json();
-         const trailer = trailerData.results.find(
-           (video) => video.type === "Trailer" && video.site === "YouTube"
-         );
-         setTrailerKey(trailer ? trailer.key : "");
-         setLoading(false);
-       } catch (error) {
-         console.error("Error fetching movie data:", error);
-       }
-     };
+        const trailerResponse = await fetch(
+          `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+          options
+        );
+        const trailerData = await trailerResponse.json();
+        const trailer = trailerData.results.find(
+          (video) => video.type === "Trailer" && video.site === "YouTube"
+        );
+        setTrailerKey(trailer ? trailer.key : "");
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching movie data:", error);
+      }
+    };
 
-     fetchMovieDetails();
-   }, [id]);
+    fetchMovieDetails();
+  }, [id]);
 
-   if (loading) {
-     return (
-       <div className="flex justify-center items-center h-screen">
-         <div className="loader">Loading...</div>
-       </div>
-     );
-   }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -93,7 +93,7 @@ const MovieDetails = () => {
           {/* Right Section - Details */}
           <div className="md:w-2/3 p-6 flex flex-col space-y-10">
             <div className="flex flex-col">
-              <h1 className="text-4xl space-y-2 font-bold">
+              <h1 className="text-4xl font-bold">
                 {movie.title}{" "}
                 {movie.release_date
                   ? `(${new Date(movie.release_date).getFullYear()})`
