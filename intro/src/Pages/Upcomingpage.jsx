@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Uphero from "../Components/Uphero"
+import Uphero from "../Components/Uphero";
 import Navbar from "../Components/Navbar";
-import Upmovie from "../Components/Upmovie"
-
+import Upmovie from "../Components/Upmovie";
 
 const Upcomingpage = () => {
   const [Umovie, setUmovie] = useState([]);
@@ -35,8 +34,8 @@ const Upcomingpage = () => {
 
   return (
     <>
-          <Navbar />
-          <Uphero/>
+      <Navbar />
+      <Uphero />
       <Upmovie Umovie={Umovie} />
     </>
   );

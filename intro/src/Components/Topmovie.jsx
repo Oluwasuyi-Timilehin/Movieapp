@@ -10,6 +10,8 @@ const Topmovie = ({ tmovie }) => {
           <div className="flex">
             <p className="text-xl font-semibold">Top 20 Rated Movies</p>
           </div>
+
+          {/* Movies */}
           <div className="grid mt-10 gap-10 grids-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {tmovie.map((result, index) => (
               <div
@@ -35,6 +37,7 @@ const Topmovie = ({ tmovie }) => {
               </div>
             ))}
           </div>
+          
         </div>
       </section>
     </>

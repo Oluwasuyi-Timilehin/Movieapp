@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Tophero from '../Components/Tophero'
-import Navbar from '../Components/Navbar'
-import Topmovie from '../Components/Topmovie';
+import Tophero from "../Components/Tophero";
+import Navbar from "../Components/Navbar";
+import Topmovie from "../Components/Topmovie";
 
 const Topratedpage = () => {
+  const [tmovie, setTmovie] = useState([]);
 
-    const [tmovie, setTmovie] = useState([]);
-
-    useEffect(() => {
-         const TopRatedMovies = async () => {
+  useEffect(() => {
+    const TopRatedMovies = async () => {
       const options = {
         method: "GET",
         headers: {
@@ -32,7 +31,7 @@ const Topratedpage = () => {
 
     TopRatedMovies();
   }, []);
-   
+
   return (
     <>
       <Navbar />
@@ -40,6 +39,6 @@ const Topratedpage = () => {
       <Topmovie tmovie={tmovie} />
     </>
   );
-}
+};
 
-export default Topratedpage
+export default Topratedpage;

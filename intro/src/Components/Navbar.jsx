@@ -17,7 +17,8 @@ const Navbar = () => {
           <Link to="/" className="text-xl font-semibold">
             Mov<span className="text-secondary">Atti</span>
           </Link>
-
+          
+          {/* Links */}
           <div className="space-x-10 text-white hidden lg:flex lg:items-center">
             <NavLink to="/" activeclassname="active">
               Discover
