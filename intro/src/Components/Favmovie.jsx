@@ -10,6 +10,8 @@ const Favmovie = ({ fmovie }) => {
           <div className="flex">
             <p className="text-xl font-semibold">Upcoming Movies</p>
           </div>
+
+          {/* Movies */}
           <div className="grid mt-10 gap-10 grids-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {fmovie.map((result) => (
               <div
@@ -30,6 +32,7 @@ const Favmovie = ({ fmovie }) => {
               </div>
             ))}
           </div>
+          
         </div>
       </section>
     </>

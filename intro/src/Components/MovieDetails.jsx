@@ -23,6 +23,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
+        // Fetch Movies
         const response = await fetch(
           `https://api.themoviedb.org/3/movie/${id}?language=en-US`,
           options
@@ -129,7 +130,10 @@ const MovieDetails = () => {
                   </button>
 
                   {/* Dropdown */}
-                  <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-20 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 flex items-center justify-center">
+                  <div
+                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-20 
+                    h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                  >
                     Add to List
                   </div>
                 </div>
@@ -141,7 +145,10 @@ const MovieDetails = () => {
                   </button>
 
                   {/* Dropdown */}
-                  <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-32 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 flex items-center justify-center">
+                  <div
+                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-32 
+                  h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                  >
                     Mark as favorite
                   </div>
                 </div>
@@ -153,7 +160,10 @@ const MovieDetails = () => {
                   </button>
 
                   {/* Dropdown */}
-                  <div className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-40 h-8 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 flex items-center justify-center">
+                  <div
+                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-40 
+                  h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                  >
                     Add to your watchlist
                   </div>
                 </div>
