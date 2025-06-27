@@ -82,7 +82,7 @@ const MovieDetails = () => {
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.title}
               style={{
-                width: "300px",
+                width: "350px",
                 height: "450px",
                 borderRadius: "15px",
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
@@ -93,14 +93,14 @@ const MovieDetails = () => {
 
           {/* Right Section - Details */}
           <div className="md:w-2/3 p-6 flex flex-col space-y-10">
-            <div className="flex flex-col">
+            <div className="flex flex-col space-y-4 lg:space-y-2">
               <h1 className="text-4xl font-bold">
                 {movie.title}{" "}
                 {movie.release_date
                   ? `(${new Date(movie.release_date).getFullYear()})`
                   : ""}
               </h1>
-              <p className="flex flex-col space-y-1 lg:flex-row">
+              <p className="flex flex-col space-y-2 lg:flex-row">
                 <span className="text-center text-sm border border-gray-400 h-7 w-7 flex justify-center items-center rounded-sm font-semibold text-gray-500 mr-2">
                   {movie.certification || "PG"}
                 </span>
