@@ -102,12 +102,11 @@ const Navbar = () => {
 
       {/* Mobile Menu - Full Screen */}
       <div
-        className={`fixed -top-3.5 w-full h-full z-40 transition-all duration-300 ease-in-out ${
+        className={`fixed inset-0 w-full h-full z-40 transition-all duration-300 ease-in-out ${
           open
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
-        } bg-primary flex flex-col items-center lg:hidden`}
-        style={{ marginTop: "72px" }}
+        } bg-primary flex flex-col items-center pt-[72px] lg:hidden`}
       >
         <div className="w-full px-6 flex flex-col items-center gap-4 py-6">
           <NavLink
