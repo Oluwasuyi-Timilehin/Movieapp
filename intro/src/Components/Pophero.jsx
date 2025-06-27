@@ -1,4 +1,3 @@
-import React from "react";
 import { BsCollectionPlayFill } from "react-icons/bs";
 
 const Pophero = () => {

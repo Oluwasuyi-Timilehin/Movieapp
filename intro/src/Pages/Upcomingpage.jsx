@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Uphero from "../Components/Uphero";
 import Navbar from "../Components/Navbar";
 import Upmovie from "../Components/Upmovie";

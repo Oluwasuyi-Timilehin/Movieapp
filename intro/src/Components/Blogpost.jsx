@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const Blogpost = ({ title, author, date, content }) => {
     return (

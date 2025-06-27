@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Popmovie from "../Components/Popmovie";
 import Navbar from "../Components/Navbar";
 import Pophero from "../Components/Pophero";
