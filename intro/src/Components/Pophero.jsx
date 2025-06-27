@@ -3,7 +3,7 @@ import { BsCollectionPlayFill } from "react-icons/bs";
 const Pophero = () => {
   return (
     <>
-      <section className="bg-primary rounded-b-2xl text-white py-20">
+      <section className="bg-primary rounded-b-2xl text-white py-24">
         <div className="flex gap-10 flex-col items-center container mx-auto px-4 lg:flex-row">
           <div className="flex flex-col space-y-5 w-full lg:w-1/2">
             <p className="text-3xl text-center leading-[35px] lg:text-5xl font-semibold lg:text-left">

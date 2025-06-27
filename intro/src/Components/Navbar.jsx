@@ -1,25 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { LuMenu, LuMoon, LuSun } from "react-icons/lu";
+import { LuMenu } from "react-icons/lu";
 import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
 
   const toggleMenu = () => {
     setOpen(!open);
     document.body.style.overflow = open ? "auto" : "hidden";
-  };
-
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem("theme", newMode ? "dark" : "light");
-    document.documentElement.classList.toggle("dark", newMode);
   };
 
   useEffect(() => {
@@ -30,14 +20,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   const closeMobileMenu = () => {
     setOpen(false);
     document.body.style.overflow = "auto";
@@ -47,8 +29,9 @@ const Navbar = () => {
     <>
       {/* Navigation */}
       <nav
-        className={`w-full sticky bg-primary top-0 z-50 py-4 transition-all duration-300
-         `}
+        className={`w-full fixed top-0 z-50 py-4 transition-all duration-300 bg-primary ${
+          scrolled ? "shadow-lg" : ""
+        }`}
       >
         <div className="flex items-center container mx-auto px-4 sm:px-6 lg:px-8 justify-between">
           {/* Logo */}
@@ -103,7 +86,6 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Toggle */}
-          {/* Hamburger Menu */}
           <button
             onClick={toggleMenu}
             className="lg:hidden text-white transition-all duration-300"
@@ -118,21 +100,22 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen */}
       <div
-        className={`fixed top-20 left-0 h-[calc(100vh-80px)] w-full z-40 transition-all duration-300 ease-in-out ${
+        className={`fixed -top-3.5 w-full h-full z-40 transition-all duration-300 ease-in-out ${
           open
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-full pointer-events-none"
-        } bg-primary shadow-lg flex flex-col items-center justify-start lg:hidden`}
+        } bg-primary flex flex-col items-center lg:hidden`}
+        style={{ marginTop: "72px" }}
       >
         <div className="w-full px-6 flex flex-col items-center gap-4 py-6">
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
+              `w-full text-xl py-4 px-4 rounded-md transition-colors duration-300 ${
                 isActive
-                  ? "text-secondary bg-emerald-900/20"
+                  ? "text-secondary bg-secondary/10"
                   : "text-white hover:text-secondary"
               }`
             }
@@ -143,9 +126,9 @@ const Navbar = () => {
           <NavLink
             to="/popular"
             className={({ isActive }) =>
-              `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
+              `w-full text-xl py-4 px-4 rounded-md transition-colors duration-300 ${
                 isActive
-                  ? "text-secondary bg-emerald-900/20"
+                  ? "text-secondary bg-secondary/10"
                   : "text-white hover:text-secondary"
               }`
             }
@@ -156,10 +139,10 @@ const Navbar = () => {
           <NavLink
             to="/topratedpage"
             className={({ isActive }) =>
-              `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
+              `w-full text-xl py-4 px-4 rounded-md transition-colors duration-300 ${
                 isActive
-                  ? "text-secondary bg-emerald-900/20"
-                  : "text-white hover:text-secondary hover:bg-zinc-100"
+                  ? "text-secondary bg-secondary/10"
+                  : "text-white hover:text-secondary"
               }`
             }
             onClick={closeMobileMenu}
@@ -169,9 +152,9 @@ const Navbar = () => {
           <NavLink
             to="/upcoming"
             className={({ isActive }) =>
-              `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
+              `w-full text-xl py-4 px-4 rounded-md transition-colors duration-300 ${
                 isActive
-                  ? "text-secondary bg-emerald-900/20"
+                  ? "text-secondary bg-secondary/10"
                   : "text-white hover:text-secondary"
               }`
             }
