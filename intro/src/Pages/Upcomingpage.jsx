@@ -8,6 +8,9 @@ const Upcomingpage = () => {
 
   useEffect(() => {
     const UpcomingMovies = async () => {
+
+      // Fetching the upcoming movies from the TMDB API
+      // The API key and options for the request are defined here.
       const options = {
         method: "GET",
         headers: {

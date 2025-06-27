@@ -8,6 +8,9 @@ const Topratedpage = () => {
 
   useEffect(() => {
     const TopRatedMovies = async () => {
+
+      // Fetching the top-rated movies from the TMDB API
+      // The API key and options for the request are defined here.
       const options = {
         method: "GET",
         headers: {

@@ -8,6 +8,9 @@ const Homepage = () => {
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([{}]);
 
+  // The useState hook initializes the query and searchResult state variables.
+  // API key and options for fetching movies
+
   const options = {
     method: "GET",
     headers: {
