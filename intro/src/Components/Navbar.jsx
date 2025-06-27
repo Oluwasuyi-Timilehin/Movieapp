@@ -133,7 +133,7 @@ const Navbar = () => {
               `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
                 isActive
                   ? "text-secondary bg-emerald-900/20"
-                  : "text-white hover:text-secondary hover:bg-zinc-100"
+                  : "text-white hover:text-secondary"
               }`
             }
             onClick={closeMobileMenu}
@@ -146,7 +146,7 @@ const Navbar = () => {
               `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
                 isActive
                   ? "text-secondary bg-emerald-900/20"
-                  : "text-white hover:text-secondary hover:bg-zinc-100"
+                  : "text-white hover:text-secondary"
               }`
             }
             onClick={closeMobileMenu}
@@ -172,7 +172,7 @@ const Navbar = () => {
               `w-full text-left text-lg py-3 px-4 rounded-md transition-colors duration-300 ${
                 isActive
                   ? "text-secondary bg-emerald-900/20"
-                  : "text-white hover:text-secondary hover:bg-zinc-100"
+                  : "text-white hover:text-secondary"
               }`
             }
             onClick={closeMobileMenu}
