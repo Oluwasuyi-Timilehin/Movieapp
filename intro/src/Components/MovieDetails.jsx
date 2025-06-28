@@ -65,178 +65,182 @@ const MovieDetails = () => {
   }
 
   return (
-    <div>
+    <section>
       <Navbar />
-      <div
-        className="flex flex-col md:flex-row text-white"
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.5) 100%), url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="container mx-auto flex flex-col py-5 lg:flex-row lg:space-x-10">
-          {/* Left Section - Poster */}
-          <div className="flex p-6">
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-              style={{
-                width: "350px",
-                height: "450px",
-                borderRadius: "15px",
-                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
-                objectFit: "cover",
-              }}
-            />
+        <div className="pt-[60px]">
+          
+          <div
+            className="flex flex-col md:flex-row text-white"
+            style={{
+              backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.5) 100%), url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="container mx-auto flex flex-col py-5 lg:flex-row lg:space-x-10">
+              {/* Left Section - Poster */}
+              <div className="flex p-6">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  style={{
+                    width: "350px",
+                    height: "450px",
+                    borderRadius: "15px",
+                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+
+              {/* Right Section - Details */}
+              <div className="md:w-2/3 p-6 flex flex-col space-y-10">
+                <div className="flex flex-col space-y-4 lg:space-y-2">
+                  <h1 className="text-4xl font-bold">
+                    {movie.title}{" "}
+                    {movie.release_date
+                      ? `(${new Date(movie.release_date).getFullYear()})`
+                      : ""}
+                  </h1>
+                  <p className="flex flex-col space-y-2 lg:items-center lg:space-y-0 lg:flex-row">
+                    <span className="text-left text-sm border border-gray-400 h-7 w-7 flex justify-center items-center rounded-sm font-semibold 
+                    text-gray-500 lg:mr-2">
+                      {movie.certification || "PG"}
+                    </span>
+                    <span className="lg:mr-2">
+                      {movie.release_date
+                        ? new Date(movie.release_date).toLocaleDateString("en-US")
+                        : "Unknown"}{" "}
+                      (US)
+                    </span>
+                    <span className="mr-2">
+                      {movie.genres
+                        ? movie.genres.map((genre) => genre.name).join(", ")
+                        : "No genres available"}
+                    </span>
+                    <span className="">
+                      {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
+                    </span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-5">
+                  {/* Action Buttons */}
+                  <div className="flex  items-center space-x-6">
+                    <div className="relative group">
+                      {/* Button */}
+                      <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
+                        ☰
+                      </button>
+
+                      {/* Dropdown */}
+                      <div
+                        className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-20 
+                        h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                      >
+                        Add to List
+                      </div>
+                    </div>
+
+                    <div className="relative group">
+                      {/* Button */}
+                      <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
+                        ♥
+                      </button>
+
+                      {/* Dropdown */}
+                      <div
+                        className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-32 
+                      h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                      >
+                        Mark as favorite
+                      </div>
+                    </div>
+
+                    <div className="relative group">
+                      {/* Button */}
+                      <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
+                        🔖
+                      </button>
+
+                      {/* Dropdown */}
+                      <div
+                        className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-40 
+                      h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
+                      >
+                        Add to your watchlist
+                      </div>
+                    </div>
+
+                    <button
+                      className="text-white text-xl flex items-center hover:text-gray-400"
+                      onClick={() => setShowTrailer(true)}
+                    >
+                      ▶ <span className="ml-1 text-sm">Play Trailer</span>
+                    </button>
+                  </div>
+                </div>
+
+                <p className="text-lg space-y-2">
+                  <strong>Overview:</strong>
+                  <p>{movie.overview}</p>
+                </p>
+                <p className="text-lg">
+                  <strong>Rating:</strong> {movie.vote_average} / 10
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Right Section - Details */}
-          <div className="md:w-2/3 p-6 flex flex-col space-y-10">
-            <div className="flex flex-col space-y-4 lg:space-y-2">
-              <h1 className="text-4xl font-bold">
-                {movie.title}{" "}
-                {movie.release_date
-                  ? `(${new Date(movie.release_date).getFullYear()})`
-                  : ""}
-              </h1>
-              <p className="flex flex-col space-y-2 lg:items-center lg:space-y-0 lg:flex-row">
-                <span className="text-left text-sm border border-gray-400 h-7 w-7 flex justify-center items-center rounded-sm font-semibold 
-                text-gray-500 lg:mr-2">
-                  {movie.certification || "PG"}
-                </span>
-                <span className="lg:mr-2">
-                  {movie.release_date
-                    ? new Date(movie.release_date).toLocaleDateString("en-US")
-                    : "Unknown"}{" "}
-                  (US)
-                </span>
-                <span className="mr-2">
-                  {movie.genres
-                    ? movie.genres.map((genre) => genre.name).join(", ")
-                    : "No genres available"}
-                </span>
-                <span className="">
-                  {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
-                </span>
-              </p>
-            </div>
-            <div className="flex items-center gap-5">
-              {/* Action Buttons */}
-              <div className="flex  items-center space-x-6">
-                <div className="relative group">
-                  {/* Button */}
-                  <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
-                    ☰
-                  </button>
-
-                  {/* Dropdown */}
-                  <div
-                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-20 
-                    h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
-                  >
-                    Add to List
-                  </div>
-                </div>
-
-                <div className="relative group">
-                  {/* Button */}
-                  <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
-                    ♥
-                  </button>
-
-                  {/* Dropdown */}
-                  <div
-                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-32 
-                  h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
-                  >
-                    Mark as favorite
-                  </div>
-                </div>
-
-                <div className="relative group">
-                  {/* Button */}
-                  <button className="text-white text-xl bg-primary h-12 w-12 rounded-full flex items-center justify-center">
-                    🔖
-                  </button>
-
-                  {/* Dropdown */}
-                  <div
-                    className="flex items-center justify-center absolute top-14 bg-primary text-white text-xs py-1 px-1 rounded-md shadow-md w-40 
-                  h-8 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-1 left-1/2 transform -translate-x-1/2"
-                  >
-                    Add to your watchlist
-                  </div>
-                </div>
-
+          {/* Trailer Modal */}
+          {showTrailer && trailerKey && (
+            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+              <div className="relative w-full max-w-4xl">
+                <iframe
+                  width="100%"
+                  height="500px"
+                  src={`https://www.youtube.com/embed/${trailerKey}`}
+                  title="Movie Trailer"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
                 <button
-                  className="text-white text-xl flex items-center hover:text-gray-400"
-                  onClick={() => setShowTrailer(true)}
+                  className="absolute top-2 right-2 text-white text-2xl"
+                  onClick={() => setShowTrailer(false)}
                 >
-                  ▶ <span className="ml-1 text-sm">Play Trailer</span>
+                  ✖
                 </button>
               </div>
             </div>
+          )}
 
-            <p className="text-lg space-y-2">
-              <strong>Overview:</strong>
-              <p>{movie.overview}</p>
-            </p>
-            <p className="text-lg">
-              <strong>Rating:</strong> {movie.vote_average} / 10
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Trailer Modal */}
-      {showTrailer && trailerKey && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="relative w-full max-w-4xl">
-            <iframe
-              width="100%"
-              height="500px"
-              src={`https://www.youtube.com/embed/${trailerKey}`}
-              title="Movie Trailer"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-            <button
-              className="absolute top-2 right-2 text-white text-2xl"
-              onClick={() => setShowTrailer(false)}
-            >
-              ✖
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Cast Section */}
-      <div className="container mx-auto p-6">
-        <h2 className="text-2xl text-black font-semibold mb-4">
-          Top Billed Cast
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {cast.map((actor) => (
-            <div
-              key={actor.id}
-              className="shadow-2xl border border-gray-300 rounded-lg"
-            >
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
-                alt={actor.name}
-                className="object-contain"
-              />
-              <div className="px-3 py-2">
-                <p className="text-gray-700 mt-2 font-semibold">{actor.name}</p>
-                <p className="text-gray-500 text-sm">{actor.character}</p>
-              </div>
+          {/* Cast Section */}
+          <div className="container mx-auto p-6">
+            <h2 className="text-2xl text-black font-semibold mb-4">
+              Top Billed Cast
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {cast.map((actor) => (
+                <div
+                  key={actor.id}
+                  className="shadow-2xl border border-gray-300 rounded-lg"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${actor.profile_path}`}
+                    alt={actor.name}
+                    className="object-contain"
+                  />
+                  <div className="px-3 py-2">
+                    <p className="text-gray-700 mt-2 font-semibold">{actor.name}</p>
+                    <p className="text-gray-500 text-sm">{actor.character}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    </div>
+    </section>
+   
   );
 };
 
